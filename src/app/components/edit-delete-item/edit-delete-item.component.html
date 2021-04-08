@@ -1,0 +1,34 @@
+<h2>Edit/Delete Item</h2>
+<button (click)= "refreshNumerically()" class= "btn btn-primary">Sort Numerically</button>
+&nbsp;
+<button (click)= "refreshItems()" class= "btn btn-primary">Sort Alphabetically</button>
+<div class="form">
+    <form #myForm= "ngForm"(ngSubmit)= "refineSearchByName(itemName)">
+        <div class="form-group">
+           <label for="name">Item Name</label>
+           <input type="text" class= "form-control" id="itemName" [(ngModel)]="itemName" name="itemName">
+        </div>
+        <button class="btn btn-info">Search</button>
+
+    </form>
+</div>
+<div class= "container">
+    <table class= "table">
+        <thead>
+            <th>Item#</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Quantity</th>
+        </thead>
+        <tbody>
+            <tr *ngFor= "let item of items">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.quantity}}</td>
+                <td><button (click)="updateItem(item.id)" class="btn btn-success">Edit</button> </td>
+                <td><button (click)="deleteItem(item.id, item)" class= "btn btn-danger">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

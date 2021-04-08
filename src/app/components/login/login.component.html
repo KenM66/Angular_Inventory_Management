@@ -1,0 +1,13 @@
+<H1>Login!</H1>
+<div class= "container">
+    <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
+    <div>
+        Username: <input type= "text" name= "username" [(ngModel)]="username">
+        Password: <input type= "password" name= "password" [(ngModel)]= "password">
+
+        <button (click) =storeUserDetails()>Login</button>
+        <br><br>
+        <label>Register Your Company Here!</label>
+        <a routerLink="/register" class= "nav-link">Register</a>
+    </div>
+</div>

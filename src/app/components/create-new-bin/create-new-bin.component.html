@@ -1,0 +1,29 @@
+<h2>Select Warehouse</h2>
+
+<div class="container">
+    <div class= "scroll-table">
+    <table class="table">
+        <thead>
+            
+            <th>Warehouse Name</th>
+        </thead>
+        <tbody>
+            <tr *ngFor= "let warehouse of warehouses">
+                
+                <td>{{warehouse.name}}</td>
+                <td><button (click)="selectWarehouse(warehouse.id)" class= "btn btn-success">Select</button></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+<div id= "add-bin-form" style= "visibility: hidden">
+    <h2>Create Bin in Warehouse</h2>
+    <form #myForm = "ngForm" (ngSubmit)= "addBin(); myForm.reset()">
+        <div class="form-group">
+            <label for="name">Bin Name</label>
+            <input type="text" class="form-control" id= "name" required [(ngModel)]= "bin.name" name= "name">
+        </div>
+        <button class= "btn btn-primary">Create</button>
+    </form>
+</div>

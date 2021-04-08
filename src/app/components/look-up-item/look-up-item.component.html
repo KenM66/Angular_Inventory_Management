@@ -1,0 +1,48 @@
+<h2>Search for Item</h2>
+<div class= "container">
+    <form #myForm= "ngForm" (ngSubmit)="searchItemsByName(name)">
+        <div class= "form-group">
+            <label for="name">Item Name</label>
+            <input type="text" class="form-control" name= "name" required [(ngModel)]=  "name">
+        </div>
+        <button class= "btn btn-success">Search</button>
+    </form>
+    <br>
+    <form #myForm="ngForm" (ngSubmit)= "searchItemById(id)">
+        <div class= "form-group">
+            <label for="name">Item Number</label>
+            <input type="text" class="form-control" name="id" required [(ngModel)]="id">
+        </div>
+        <button class= "btn btn-success">Search</button>
+    </form>
+</div>
+<br><br>
+<div id= "select-buttons" style= "visibility: hidden;">
+<h5>Select Item</h5>
+<div  class= "item-buttons" *ngFor= "let item of items">
+    <button (click)= "checkIfBinContainsItem(item)" class= "btn btn-primary">{{item.name}}</button>
+    <br><br>
+</div>
+</div>
+<div id="location-table" style="visibility: hidden;">
+    
+    <h5>Item Location(s)</h5>
+    <div class= "scroll-table">
+        <table class="table">
+            <thead>
+                <th>Warehouse Name</th>
+                <th>Bin Name</th>
+            </thead>
+        
+            <tr *ngFor= "let bin of bins2">
+                <ng-container *ngFor= "let warehouse of warehouses">
+                  <ng-container *ngIf= "bin.warehouseNum===warehouse.id">
+                    <td>{{warehouse.name}}</td>
+                    <td>{{bin.name}}</td>
+                </ng-container>
+                </ng-container>
+            </tr>
+        
+        </table>
+    </div>
+</div>

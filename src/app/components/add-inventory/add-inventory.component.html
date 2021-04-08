@@ -1,0 +1,69 @@
+<h2>Select Warehouse</h2>
+
+<div class="container">
+    <div class= "scroll-table">
+    <table class="table">
+        <thead>
+            
+            <th>Warehouse Name</th>
+        </thead>
+        <tbody>
+            <tr *ngFor= "let warehouse of warehouses">
+                
+                <td>{{warehouse.name}}</td>
+                <td><button (click)="selectWarehouse(warehouse.id, warehouse.name, warehouse.bins)" class= "btn btn-success">Select</button></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+
+<div id="bin-table" style= "visibility: hidden;">
+    <h2>Select Bin</h2>
+<div class= "scroll-table">
+    <table class= "table">
+        <thead>
+            <th>Bin Name</th>
+        </thead>
+        <tbody>
+            <tr *ngFor= "let bin of bins">
+                <td>{{bin.name}}</td>
+                <td><button (click)="selectBin(bin.id)" class="btn btn-success">Select</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+<div id="item-search" style= "visibility: hidden">
+<h2>Search for Item</h2>
+ <form #myForm="ngForm" (ngSubmit)= "searchItems(itemName);">
+    <div class= "form-group">
+        <label for= "name">Item Name</label>
+        <input type= "text"  name= "itemName" required [(ngModel)]="itemName">
+    </div>
+
+    <button class= "btn btn-primary">Search</button>
+</form>
+
+<div id= "item-table" style= "visibility: hidden">
+    <h2>Add Item(s) to Bin</h2>
+<div class= "scroll-table">
+    <table class= "table">
+        <thead>
+            <th>Item#</th>
+            <th>Item Name</th>
+            <th>Item Description</th>
+        </thead>
+        <tbody>
+            <tr *ngFor= "let item of items">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.description}}</td>
+                <td><button (click)="getItem(item.id)"  class= "btn btn-success">Add</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+</div>
