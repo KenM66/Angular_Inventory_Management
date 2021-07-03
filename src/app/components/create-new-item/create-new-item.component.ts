@@ -21,6 +21,8 @@ export class CreateNewItemComponent implements OnInit {
   itemDescription!:String;
   itemChecked: boolean= false;
 
+  tempItemString!: string;
+
   constructor(
     private itemService: ItemService,
     private router: Router,
@@ -31,10 +33,38 @@ export class CreateNewItemComponent implements OnInit {
     var companyNum= localStorage.getItem("companyStringNumKey");
     var companyNumber= Number(companyNum);
     LoginComponent.companyNum= companyNumber;
+    LoginComponent.userLoggedIn= JSON.parse(localStorage.getItem("userLoggedInStringKey")!);
+     console.log(LoginComponent.userLoggedIn); 
     this.id= this.route.snapshot.params['id'];
+  
+    this.itemService.getItemsByCompanyNum(LoginComponent.companyNum).
+     subscribe(
+       response=>{
+         this.items=response;
+
+         for(let i=0; i<this.items.length; i++ ){
+          
+           if(this.id==this.items[i].id){
+             this.itemName= this.items[i].name;
+             this.itemDescription= this.items[i].description;
+             this.tempItemString= this.items[i].name
+             console.log('this loop works');
+           }
+         }
+       }
+
+     
+
+     )
+
+    
     this.item= new Item();
-    this.itemName=' ';
-    this.itemDescription=' ';
+    if(this.id==undefined){
+    this.itemName='';
+    this.itemDescription='';
+    }
+    
+    
     this.item.id= this.id;
     if(this.id!=undefined){
       this.itemService.getItemById(this.id)
@@ -67,7 +97,7 @@ onSubmit(){
             )
          );
         alert("Item created");
-        //this.router.navigateByUrl('/new-item');
+        
         this.item= new Item();
       }
 
@@ -75,6 +105,10 @@ onSubmit(){
         if(this.itemChecked===true){
           return;
         }
+        console.log(this.item);
+        this.itemName= this.item.name;
+        this.itemDescription= this.item.description;
+        console.log(this.item.name);
         this.itemService.updateItem(this.id, this.item).subscribe(
           data=>{
             console.log(data)
@@ -85,7 +119,7 @@ onSubmit(){
   }
   checkIfItemExists(){
     this.itemChecked= false;
-    console.log(this.item);
+   
    
       var itemString= this.itemName.toString();
       localStorage.setItem('itemStringKey', itemString);
@@ -103,6 +137,9 @@ onSubmit(){
           console.log(itemStringReceived+" "+ this.items[i].name);
           
           if(itemStringReceived!.toUpperCase().trim()=== this.items[i].name.toUpperCase().trim()){
+            if(itemStringReceived?.toUpperCase().trim()=== this.tempItemString.toUpperCase().trim()){
+              break;
+            }
             alert("You already have an item named "+itemStringReceived+".")
             this.itemChecked=true;
             return;

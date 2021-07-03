@@ -1,6 +1,7 @@
 .container{
-    width: 600px;
+    width: 800px;
     overflow-y:scroll;
     position: relative;
     height: 500px;
+    
 }

@@ -9,5 +9,6 @@ export class User{
     securityQuestion!: string;
     securityAnswer!: string;
     companyNum!: number;
+ 
 
 }

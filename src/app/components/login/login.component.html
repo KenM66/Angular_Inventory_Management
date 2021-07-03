@@ -5,7 +5,8 @@
         Username: <input type= "text" name= "username" [(ngModel)]="username">
         Password: <input type= "password" name= "password" [(ngModel)]= "password">
 
-        <button (click) =storeUserDetails()>Login</button>
+        <button (click) =storeUserDetails()>Login</button><br>
+        <a routerLink="/forgot-password" class="nav-link">Forgot Password?</a>
         <br><br>
         <label>Register Your Company Here!</label>
         <a routerLink="/register" class= "nav-link">Register</a>

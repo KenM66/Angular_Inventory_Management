@@ -37,9 +37,9 @@
                      <form #myForm= "ngForm" (ngSubmit)= "editBin(bin.id, bin)">
                         <div class= "form-group">
                         <label for= "name">Bin Name</label>
-                        <input type="text" class="form-control" id= "name" required [(ngModel)]= "bin.name" name= "name">
+                        <input type="text" class="form-control" id="name" required [(ngModel)]="bin.name" name= "name">
                         </div>
-                        <button class= "btn btn-primary">Submit</button>
+                        <button class= "btn btn-success">Submit</button>
                     </form>
                    
                 </div>

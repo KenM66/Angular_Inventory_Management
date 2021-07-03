@@ -1,0 +1,23 @@
+<h1>Update your security information</h1>
+
+<div id="update-information-form">
+    <form #myForm="ngForm"(ngSubmit)="update();">
+        <div class="form-group">
+            <label for="name">Enter Security Question</label>
+            <input type="text" class="form-control" id="name" required [(ngModel)]= "securityQuestion" name="securityQuestion">
+        </div>
+        <div class="form-group">
+            <label for="name">Enter Security Answer</label>
+            <input type="text" class="form-control" id="name" required [(ngModel)]= "securityAnswer" name= "securityAnswer">
+        </div>
+        <div class="form-group">
+            <label for="name">Enter New Password</label>
+            <input type="password" class="form-control" id="name" required [(ngModel)]= "password1" name= "password1">     
+         </div>
+         <div class="form-group">
+             <label for="name">Confirm New Password</label>
+             <input type="password" class="form-control" id="name" required [(ngModel)]= "password2" name= "password2">
+         </div>
+         <button class="btn btn-primary">Submit</button>
+    </form>
+</div>

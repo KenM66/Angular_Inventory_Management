@@ -1,1 +1,35 @@
-<p>manage-warehouses works!</p>
+<H1>Warehouses</H1>
+
+<div class= "container">
+    <div class= "scroll-table">
+        <table class= "table">
+            <thead>
+                <th>Warehouse Name</th>
+            </thead>
+                    <tbody>
+                        <tr *ngFor= "let warehouse of warehouses">
+                            <td>{{warehouse.name}}</td>
+                            <td><button (click)="showUpdateForm(warehouse)" class= "btn btn-success">Edit</button></td>
+                            <td><button (click)="deleteWarehouse(warehouse.id, warehouse)" class= "btn btn-danger">Delete</button></td>
+                        </tr>
+                  
+                        <div id= "update-form" style= "visibility:hidden">
+                            <form #myForm= "ngForm" (ngSubmit)= "editWarehouseName(warehouse.id, warehouse)">
+                                <div class= "form-group">
+                                    <label for= "name">Warehouse Name</label>
+                                    <input type= "text" class= "form-control" id="name" required [ngModel]="warehouse?.name" (ngModelChange)= "warehouse.name=$event" name="name">
+                                </div>
+                                <button class= "btn btn-success">Submit</button>
+                            </form>
+                        </div>
+                    </tbody>
+            
+        </table>
+    </div>
+    </div>
+
+
+   
+
+
+ 

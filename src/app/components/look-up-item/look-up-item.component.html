@@ -20,13 +20,13 @@
 <div id= "select-buttons" style= "visibility: hidden;">
 <h5>Select Item</h5>
 <div  class= "item-buttons" *ngFor= "let item of items">
-    <button (click)= "checkIfBinContainsItem(item)" class= "btn btn-primary">{{item.name}}</button>
+    <button (click)= "checkIfBinContainsItem(item, bins)" class= "btn btn-primary">{{item.name}}</button>
     <br><br>
 </div>
 </div>
 <div id="location-table" style="visibility: hidden;">
     
-    <h5>Item Location(s)</h5>
+    <h5>{{item.name}} Location(s)</h5>
     <div class= "scroll-table">
         <table class="table">
             <thead>

@@ -2,46 +2,55 @@
 <div class= "page-container">
     <div class= "sidebar">
         <div class= "list-items">
-            <a routerLink="/add-inventory" routerLinkActive="selected" class= "list-item">
+            <a *ngIf="basicAuthenticationService.isUserLoggedIn()" routerLink="/add-inventory" routerLinkActive="selected" class= "list-item">
                 <i class= "material-icons">bookmark</i>
                 Add Inventory</a>
-            <a routerLink="/remove-inventory" routerLinkActive="selected" class= "list-item">
+            <a *ngIf="basicAuthenticationService.isUserLoggedIn()" routerLink="/remove-inventory" routerLinkActive="selected" class= "list-item">
                 <i class= "material-icons">bookmark</i>
                 Remove Inventory</a>
-            <a routerLink="/new-item" routerLinkActive="selected" class= "list-item">
+            <a *ngIf="basicAuthenticationService.isUserLoggedIn()" routerLink="/new-item" routerLinkActive="selected" class= "list-item">
                 <i class= "material-icons">bookmark</i>
                 Create New Item</a>
-            <a routerLink="/edit-delete-item" routerLinkActive="selected" class="list-item">
+            <a *ngIf="basicAuthenticationService.isUserLoggedIn()" routerLink="/edit-delete-item" routerLinkActive="selected" class="list-item">
                 <i class= "material-icons">bookmark</i>
                 Edit/Delete Item
             </a>
-            <a routerLink="/new-bin" routerLinkActive="selected" class="list-item">
+            <a *ngIf="basicAuthenticationService.isUserLoggedIn()" routerLink="/new-bin" routerLinkActive="selected" class="list-item">
                 <i class= "material-icons">bookmark</i>
                 Create New Bin
             </a>
-            <a routerLink="/manage-bins" routerLinkActive="selected" class="list-item">
+            <a *ngIf="basicAuthenticationService.isUserLoggedIn()" routerLink="/manage-bins" routerLinkActive="selected" class="list-item">
                 <i class= "material-icons">bookmark</i>
                 Manage Bins
             </a>
-            <a routerLink="/new-warehouse" routerLinkActive="selected" class="list-item">
+            <a *ngIf="basicAuthenticationService.isUserLoggedIn()" routerLink="/new-warehouse" routerLinkActive="selected" class="list-item">
                 <i class= "material-icons">bookmark</i>
                 Create New Warehouse
             </a>
-            <a routerLink="/manage-warehouses" routerLinkActive="selected" class="list-item">
+            <a *ngIf="basicAuthenticationService.isUserLoggedIn()" routerLink="/manage-warehouses" routerLinkActive="selected" class="list-item">
                 <i class= "material-icons">bookmark</i>
                 Manage Warehouses
             </a>
-            <a routerLink="/look-up-item" routerLinkActive="selected" class="list-item">
+            <a *ngIf="basicAuthenticationService.isUserLoggedIn()" routerLink="/look-up-item" routerLinkActive="selected" class="list-item">
                 <i class= "material-icons">bookmark</i>
                 Look Up Item
             </a>
-            <a routerLink="/admin" routerLinkActive="selected" class="list-item">
+            <a *ngIf="basicAuthenticationService.isUserLoggedIn() && user && user.admin===true" routerLink="/admin" routerLinkActive="selected" class="list-item">
                 <i class= "material-icons">bookmark</i>
                 Administrator Settings
             </a>
-            <a routerLink="/logout" routerLinkActive="selected" class="list-item">
+            <a *ngIf="basicAuthenticationService.isUserLoggedIn()" routerLink="/change-password" routerLinkActive="selected" class="list-item">
+                <i class="material-icons">bookmark</i>
+                Change Password
+            </a>
+            <a *ngIf="basicAuthenticationService.isUserLoggedIn()" routerLink="/logout" routerLinkActive="selected" class="list-item">
                 <i class= "material-icons">bookmark</i>
                 Logout
+            </a>
+         
+            <a *ngIf="!basicAuthenticationService.isUserLoggedIn()" routerLink="/login" routerLinkActive="selected" class="list-item">
+                <i class="material-icons">bookmark</i>
+                Login
             </a>
             
         </div>

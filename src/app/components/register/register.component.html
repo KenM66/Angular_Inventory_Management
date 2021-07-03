@@ -1,1 +1,35 @@
-<p>register works!</p>
+<h1>Enter Details</h1>
+<br>
+<br>
+
+<div class="container">
+   <div id= "registrationForm">
+       <form [formGroup]="registrationForm" #myForm="ngForm" (ngSubmit)="setValues()">
+           <label>
+               Company Name
+               <input type="text" class="form-control" formControlName="companyName"  placeholder="required">
+           </label><br>
+           <label>
+               Primary Username
+               <input type="text" class="form-control" formControlName= "username" placeholder="required">
+           </label><br>
+           <label>
+               Password
+               <input type= "password" class="form-control" formControlName= "password1" placeholder="required">
+           </label><br>
+           <label>
+               Confirm Password
+               <input type= "password" class="form-control" formControlName="password2" placeholder="required">
+           </label><br>
+           <label>
+               Create Security Question
+               <input type= "text" class= "form-control" formControlName= "securityQuestion" placeholder= "required">
+           </label><br>
+           <label>
+               Answer Security Question
+               <input type= "text" class= "form-control" formControlName= "securityAnswer" placeholder= "required">
+           </label><br>
+           <button class="btn btn-success">Register</button>
+       </form>
+   </div>
+</div>

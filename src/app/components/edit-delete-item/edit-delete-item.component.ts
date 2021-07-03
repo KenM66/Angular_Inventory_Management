@@ -23,6 +23,8 @@ export class EditDeleteItemComponent implements OnInit {
     var companyNum= localStorage.getItem("companyStringNumKey");
     var companyNumber= Number(companyNum);
     LoginComponent.companyNum= companyNumber;
+    LoginComponent.userLoggedIn= JSON.parse(localStorage.getItem("userLoggedInStringKey")!);
+     
     this.refreshItems();
   }
 
@@ -94,6 +96,10 @@ deleteItem(id: number, item: Item){
 
 updateItem(id: number){
   this.router.navigate(['new-item', id]);
+}
+
+lookupItem(id: number){
+  this.router.navigate(['look-up-item', id]);
 }
 
 }

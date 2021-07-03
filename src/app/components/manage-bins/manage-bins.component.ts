@@ -29,14 +29,12 @@ export class ManageBinsComponent implements OnInit {
       response=>{
         console.log(response);
         this.warehouses=response;
-        this.warehouses.forEach((element: any , index: any)=> {
-          if(element.company.id!=LoginComponent.companyNum){
-               this.warehouses.splice(index, 1);
+        for(let i=0; i<this.warehouses.length; i++){
+          if(this.warehouses[i].company.id !=LoginComponent.companyNum){
+            this.warehouses.splice([i]);
+            console.log('this works!');
           }
-         
         }
-        
-        );
         console.log(this.warehouses);
       }
     )
@@ -48,7 +46,10 @@ export class ManageBinsComponent implements OnInit {
     var companyNum= localStorage.getItem("companyStringNumKey");
     var companyNumber= Number(companyNum);
     LoginComponent.companyNum= companyNumber;
+    LoginComponent.userLoggedIn= JSON.parse(localStorage.getItem("userLoggedInStringKey")!);
+     console.log(LoginComponent.userLoggedIn); 
     this.retrieveWarehouses();
+
   }
 
 
@@ -97,6 +98,7 @@ editBin(id: number, bin: Bin){
       data=>{
         console.log(data);
         this.selectWarehouse(this.warehouseId);
+        document.getElementById('update-form')!.style.visibility="hidden";
       }
   )
 }

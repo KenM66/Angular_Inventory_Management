@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Bin } from 'src/app/Bin';
 import { Item } from 'src/app/Item';
 import { BinService } from 'src/app/service/bin.service';
@@ -14,7 +15,7 @@ import { LoginComponent } from '../login/login.component';
 })
 export class LookUpItemComponent implements OnInit {
 
-  bins!: Bin[]|any;
+  bins: Bin[]|any;
   items!: Item[]| any;
   item!: Item|any;
   name: string='';
@@ -26,17 +27,22 @@ export class LookUpItemComponent implements OnInit {
   constructor(
     private binService: BinService,
     private itemService: ItemService,
-    private warehouseService: WarehouseService
+    private warehouseService: WarehouseService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    
+   
     this.item=new Item();
     var companyNum= localStorage.getItem("companyStringNumKey");
     var companyNumber= Number(companyNum);
     LoginComponent.companyNum= companyNumber;
+    LoginComponent.userLoggedIn= JSON.parse(localStorage.getItem("userLoggedInStringKey")!);
+    
     this.searchAllBins();
-    this.setWarehouseList();
+   
+    this.id= this.route.snapshot.params['id'];
+  
     
   }
   setWarehouseList(){
@@ -55,6 +61,12 @@ export class LookUpItemComponent implements OnInit {
       response=>{
         console.log(response);
         this.bins=response;
+        this.setWarehouseList();
+        if(this.id!=undefined){
+     
+          this.searchItemById(this.id);
+    
+        }
       }
     )
   }
@@ -79,39 +91,47 @@ export class LookUpItemComponent implements OnInit {
 
   searchItemById(id: number){
     this.items=[];
-    
+   
     this.itemService.getItemById(id)
     .subscribe(
       data=>{
         this.item=data;
+      if(this.item!=null){
         if(this.item.companyNum!=LoginComponent.companyNum){
           alert("Item Not Found!");
           return;
         }
         
-        this.checkIfBinContainsItem(this.item);
+        this.checkIfBinContainsItem(this.item, this.bins);
         
       }
+      else{
+        alert("Item not found!");
+      }
+      }
+     
     )
     
   }
 
-  checkIfBinContainsItem(item: Item){
+  checkIfBinContainsItem(item: Item, bins: Bin[]){
     
     this.bins2=[];
-   
-      for(let bin of this.bins){
-          
-            for(let i=0; i<bin.items.length; i++){
-              if(bin.items[i].id=== item.id){
-                //bin.tempBinString= item.name;
-                this.bins2.push(bin);
-                
-              }
-            }
+  
+      
+    
+      bins.forEach((element:Bin)=>{
+        for(let i=0; i<element.items.length; i++){
+          if(element.items[i].id=== item.id){
+            element.tempBinString= item.name;
+            this.bins2.push(element);
+          }
         }
+      }
+      )
+        
         document.getElementById('location-table')!.style.visibility="visible";
-        console.log(this.bins2);
+    
      }
 
   

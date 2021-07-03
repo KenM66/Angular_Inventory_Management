@@ -2,5 +2,12 @@
     width: 600px;
     overflow-y:scroll;
     position: relative;
-    height: 100px;
+    height: 200px;
+}
+
+.scroll-table2{
+    width: 600px;
+    overflow-y:scroll;
+    position: relative;
+    height: 500px;
 }

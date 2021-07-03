@@ -1,1 +1,64 @@
-<p>administrator-settings works!</p>
+<H1>Administrator Settings</H1><br><br>
+<h3>Select an Action</h3>
+<button (click)="showUserForm()">Add User</button>&nbsp;
+<button (click)= "showUsers()">Edit/Delete User</button><br><br>
+
+<div class= "container">
+   <div id="registrationForm"  style= "visibility: hidden;">
+    <form [formGroup]="registrationForm" #myForm= "ngForm" (ngSubmit)="createUser()">
+       <h4>Add User Details</h4>
+       <label>
+           Username:
+           <input type= "text" formControlName= "username" placeholder="required" [(ngModel)]= "user.username" minlength="2"/>
+       </label><br>
+       <label>
+           Temporary Password:
+           <input type="password" formControlName= "password" placeholder= "required" [(ngModel)]= "user.password" minlength="5"/>
+       </label><br>
+       <label>
+           Confirm Password:
+           <input type= "password" formControlName= "password2" placeholder= "required" [(ngModel)]="password2" minlength="5"/>
+       </label><br>
+       <label>
+           User Type:
+           <div formGroupName="userType" class="grouping">
+               <label>Standard
+                   <input type="radio" [(ngModel)]="user.admin" [value]="false" formControlName="userType">
+               </label>
+               <label>
+                   Administrator
+               <input type= "radio" [(ngModel)]="user.admin" [value]="true" formControlName="userType">
+            </label>
+
+           </div>
+       </label><br>
+       <button class= "btn btn-primary">Create</button>
+       </form>
+      <button (click)="cancelForm()" class= "btn btn-danger">Cancel</button>
+    </div>
+   
+</div>
+
+<div class="container">
+    <div id= "userList" style= "visibility: hidden;">
+        <div class= "scroll-table">
+            <table class="table">
+                <thead>
+                    <th>Username</th>
+                    <th>User Type</th>
+                </thead>
+                    <tbody>
+                        <tr *ngFor= "let user of users">
+                            <td>{{user.username}}</td>
+                            <td *ngIf= "user.admin===true">Admin</td>
+                            <td *ngIf= "user.admin===false">Standard</td>
+                            <td *ngIf= "user.admin===false"><button (click)="makeAdmin(user)" class= "btn btn-primary">Make Admin</button></td>
+                            <td *ngIf= "user.admin===true"><button (click)= "makeStandard(user)" class= "btn btn-primary">Make Standard</button></td>
+                            <td><button (click)="deleteUser(user)" class="btn btn-danger">Delete</button></td>
+
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>

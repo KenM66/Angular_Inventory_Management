@@ -19,6 +19,11 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { FirstTimeLoginComponent } from './components/first-time-login/first-time-login.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+
 
 @NgModule({
   declarations: [
@@ -36,13 +41,17 @@ import { HttpClientModule } from '@angular/common/http';
     LookUpItemComponent,
     AdministratorSettingsComponent,
     LogoutComponent,
-    RegisterComponent
+    RegisterComponent,
+    ChangePasswordComponent,
+    FirstTimeLoginComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule, 
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

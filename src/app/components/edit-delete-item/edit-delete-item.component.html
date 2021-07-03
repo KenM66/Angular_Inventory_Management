@@ -28,6 +28,7 @@
                 <td>{{item.quantity}}</td>
                 <td><button (click)="updateItem(item.id)" class="btn btn-success">Edit</button> </td>
                 <td><button (click)="deleteItem(item.id, item)" class= "btn btn-danger">Delete</button></td>
+                <td><button (click)="lookupItem(item.id)" class= "btn btn-primary">Location(s)</button></td>
             </tr>
         </tbody>
     </table>

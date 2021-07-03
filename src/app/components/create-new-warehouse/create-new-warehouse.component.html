@@ -1,1 +1,11 @@
-<p>create-new-warehouse works!</p>
+<H1>Create New Warehouse</H1>
+
+<div class= "container">
+    <form #myForm= "ngForm" (ngSubmit)= "addWarehouse(); myForm.reset()">
+        <div class= "form-group">
+            <label for="name">Warehouse Name</label>
+            <input type="text" class= "form-control" id= "name" required [(ngModel)]="warehouse.name" name="name">
+        </div>
+        <button class= "btn btn-primary">Create</button>
+    </form>
+</div>

@@ -37,6 +37,9 @@ export class AddInventoryComponent implements OnInit {
     var companyNumber= Number(companyNum);
     LoginComponent.companyNum= companyNumber;
     this.retrieveWarehouses();
+
+    LoginComponent.userLoggedIn= JSON.parse(localStorage.getItem("userLoggedInStringKey")!);
+     console.log(LoginComponent.userLoggedIn); 
   }
 
 retrieveWarehouses(){
@@ -44,14 +47,12 @@ retrieveWarehouses(){
     response=>{
       console.log(response);
       this.warehouses=response;
-      this.warehouses.forEach((element: any , index: any)=> {
-        if(element.company.id!=LoginComponent.companyNum){
-             this.warehouses.splice(index, 1);
+      for(let i=0; i<this.warehouses.length; i++){
+        if(this.warehouses[i].company.id !=LoginComponent.companyNum){
+          this.warehouses.splice([i]);
+          console.log('this works!');
         }
-       
       }
-      
-      );
       console.log(this.warehouses);
     }
   )

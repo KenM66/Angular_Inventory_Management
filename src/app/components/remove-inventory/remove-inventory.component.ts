@@ -1,4 +1,4 @@
-import { style } from '@angular/animations';
+
 import { Component, OnInit } from '@angular/core';
 import { Bin } from 'src/app/Bin';
 import { Item } from 'src/app/Item';
@@ -33,6 +33,8 @@ export class RemoveInventoryComponent implements OnInit {
     var companyNum= localStorage.getItem("companyStringNumKey");
     var companyNumber= Number(companyNum);
     LoginComponent.companyNum= companyNumber;
+    LoginComponent.userLoggedIn= JSON.parse(localStorage.getItem("userLoggedInStringKey")!);
+     console.log(LoginComponent.userLoggedIn); 
     this.retrieveWarehouses();
   }
   retrieveWarehouses() {
@@ -40,14 +42,15 @@ export class RemoveInventoryComponent implements OnInit {
       response=>{
         console.log(response);
         this.warehouses=response;
-        this.warehouses.forEach((element: any , index: any)=> {
-          if(element.company.id!=LoginComponent.companyNum){
-               this.warehouses.splice(index, 1);
+        for(let i=0; i<this.warehouses.length; i++){
+          if(this.warehouses[i].company.id !=LoginComponent.companyNum){
+            this.warehouses.splice([i]);
+            console.log('this works!');
           }
-         
+          else{
+            console.log(this.warehouses[i].name+ " was not removed from the list!");
+          }
         }
-        
-        );
         console.log(this.warehouses);
       }
     )
